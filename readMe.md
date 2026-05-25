@@ -47,3 +47,48 @@
             if settings.DEBUG:
                 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
         ``` 
+
+TODO: Add each step of implementation
+
+
+## Auth Set-up
+
+- add this in your `setting.py`:  `AUTH_USER_MODEL = 'accounts.User'`
+
+- Create `user-model`:
+    - We bring in the abstractuser since we want to customize the user details
+    ``` {py}
+
+        from django.db import models
+        from django.contrib.auth.models import AbstractUser # helps in customization of User themselves
+
+        # Create your models here.
+
+        class User(AbstractUser):
+
+            ROLE_CHOICES ={
+                "student": "Student", 
+                "officer":"Welfare Officer", 
+                "counsellor": "Counsellor",
+                "lecturer":"Lecturer"
+            }
+
+            roles = models.CharField(max_length=100, choices=ROLE_CHOICES, default="student")
+            bio = models.TextField(blank = True)
+            profile_picture = models.ImageField(upload_to="profile_pictures", blank=True) 
+
+    ```
+
+- create the userForm: 
+    - create the `forms.py` file
+    - create the `UserForm`: 
+        ```
+        from django.contrib.auth.forms import UserCreationForm  # embracing the prebuilt UserCreationForm
+        from .models import User # importing the Model
+
+        class UserForm(UserCreationForm):
+            class Meta: 
+                model = User 
+                fields = UserCreationForm.Meta.Fields + ("first_name", "last_name","email", "roles","profile_picture","bio")
+
+        ```
