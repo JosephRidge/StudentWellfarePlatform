@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-class Report(model.Models): 
+class Report(models.Model): 
 
     CATEGORY_CHOICES = [
         ("academic","ACADEMIC"), 
@@ -25,7 +25,7 @@ class Report(model.Models):
             ("closed", "CLOSED")
         ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL) # 1-many relationship
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True) # 1-many relationship
     title = models.CharField(max_length=100)
     description = models.TextField() 
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default="security") 
