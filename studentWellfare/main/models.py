@@ -4,7 +4,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Report(models.Model): 
-
     CATEGORY_CHOICES = [
         ("academic","ACADEMIC"), 
         ("mental_health", "MENTAL HEALTH"),
