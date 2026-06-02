@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for resource in resources %}
+  <div class="dflex">
+    <a href="{% url 'read-resource' resource.id %}">{{resource.title}}</a>
+ 
+  <div class="badge bg-success">{{resource.category}}</div> </div>
+
+  <p class="">
+    {{resource.notes}}
+  </p>
+ 
+{% endfor %}
+
+{% endblock %}

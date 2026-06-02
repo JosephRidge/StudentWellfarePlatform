@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import UserForm
+from django.contrib import messages # aids in notification/ pop ups 
 
 # Create your views here.
  
@@ -17,8 +18,10 @@ def loginUser(request):
       
         if user is not None:  
             login(request, user) # login user => creates the user aith session
+            messages.info(request, f"Welcome home {username}")
             return redirect('home')
         else:   
+            messages.error(request, "check your credentials")
             return redirect('login')
     else:
         pass
@@ -33,10 +36,13 @@ def registerUser(request):
         if form.is_valid(): # check whether form inputs are well done
             user = form.save(commit = False) # pause submission
             user.save() # create the new user
+            messages.info(request, "Success!")
             return redirect('login')
         else:
-            form = UserForm() # create an instance of the userform
+            # form = UserForm() # create an instance of the userform
+            messages.info(request, f"Failed! {form.errors}")
     else:
+        messages.error(request, "Oops something went wrong")
         form = UserForm()
     context ={"form":form}
     return render(request,'accounts/register.html', context)
@@ -47,4 +53,5 @@ def passwordReset(request):
 
 def logoutUser(request):
     logout(request)
+    messages.info(request, "Successfully logged you out!")
     return redirect('login') # this basically instructs django to take you back to login page
