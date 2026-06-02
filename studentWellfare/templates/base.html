@@ -13,7 +13,7 @@
     {% include 'nav.html' %}
 
     {% if messages %}
-    <div class="messages badge text-bg-info py-2 px-3 container w-25">
+    <div class="container messages badge text-bg-info py-2 px-3  w-25">
         {% for message in messages %}
         <div{% if message.tags %} class="{{ message.tags }}" {% endif %} class="">{{ message }}</div>
             {% endfor %}

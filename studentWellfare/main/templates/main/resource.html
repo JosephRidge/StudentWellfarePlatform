@@ -23,4 +23,7 @@
 <a href="{{resource.link}}"> source</a>
 {% endif %}
 
+<a href="{% url 'delete-resource' resource.id %}" class="badge bg-danger">DELETE</a> <br>
+<a href="{% url 'update-resources' resource.id  %}" class="badge bg-warning">update resource</a>
+  
 {% endblock %}

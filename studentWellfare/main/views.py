@@ -59,9 +59,9 @@ def createResource(request):
         else:
             # form = UserForm() # create an instance of the userform
             messages.info(request, f"Failed! {form.errors}")
-    else:
-        messages.error(request, "Oops something went wrong")
+    else: 
         form = ResourceForm() 
+
     context = {"form": form, "type": "Add a new resource"}
     return render(request, 'main/forms.html', context)
 
@@ -81,13 +81,31 @@ def readResource(request, pk):
 #     path('update-resource/',views.updateResources, name='update-resources'),
 def updateResources(request, pk):
     resource = Resource.objects.get(id=pk) # fetche a particular resource from the DB
-    form = ResourceForm(instance = resource)
-    context = {"form":form}
-    return render(request, "main/forms.html", context)
+   
+    if request.method == "POST": 
+        form = ResourceForm(request.POST, request.FILES) # captures both for, input and files
+
+        if form.is_valid(): # check whether form inputs are well done
+            user = form.save(commit = False) # pause submission
+            user.save() # create the new user
+            messages.info(request, "Success!")
+            return redirect('read-resources')
+        else:
+            # form = UserForm() # create an instance of the userform
+            messages.info(request, f"Failed! {form.errors}")
+    else:
+        form = ResourceForm(instance = resource) 
+
+    context = {"form": form, "type": "update the resource"}
+    return render(request, 'main/forms.html', context)
+ 
 
 #     path('delete-resource/',views.deleteResources, name='delete-resources'),
-def deleteResources(request):
-    pass
+def deleteResources(request, pk):
+    deleted_resource = Resource.objects.get(id=pk) # logging
+    resource = deleted_resource.delete()
+    messages.info(request, f"{deleted_resource.title} DELETED!")
+    return redirect('read-resources')
 
 
 @login_required(login_url='login')
