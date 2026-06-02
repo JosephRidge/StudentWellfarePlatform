@@ -25,7 +25,10 @@ urlpatterns = [
     path('delete-resource/<int:pk>',views.deleteResources, name='delete-resource'),
 
 
-# NOTIFICAITON CRUD 
+# NOTIFICATION CRUD 
     path('create-notification/',views.createNotification, name='create-notification'),
-
+    path('read-notification/<int:pk>',views.readNotification, name='read-notification'),
+    path('read-notifications/',views.readNotifications, name='read-notifications'),
+    path('update-notification/<int:pk>',views.updateNotification, name='update-notification'),
+    path('delete-notification/<int:pk>',views.deleteNotification, name='delete-notification'),
 ]

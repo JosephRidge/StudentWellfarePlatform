@@ -4,6 +4,8 @@ from .forms import ReportForm, AppointmentForm, FeedbackForm, ResourceForm, Noti
 from django.contrib import messages # aids in notification/ pop ups 
 from .models import Resource, Report, Notification, Appointment, Feedback # models
 
+from django.conf import settings
+
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
@@ -108,8 +110,42 @@ def deleteResources(request, pk):
     return redirect('read-resources')
 
 
+"""
+- RESOURCE CRUD Operations
+    - CREATE
+    - READ
+        - Read One item
+        - Read All items
+    - UPDATE
+    - DELETE
+"""
 @login_required(login_url='login')
 def createNotification(request):
     form = NotificationForm() # instance of the form 
+
+    if request.method == 'POST':
+        form = NotificationForm(request.POST ) 
+        # tODO: capture user details as defaullt
+        if form.is_valid(): 
+            form.save()
+            redirect('read-notifications')
+        else:
+            messages.error(request, f"{form.errors}")
+    else: 
+        form = NotificationForm() # instance of the form
+
     context = {"form": form, "type": "Notify users of something new!"}
     return render(request, 'main/forms.html', context)
+
+
+def readNotifications(request):
+    pass
+
+def readNotification(request, pk):
+    pass
+
+def updateNotification(request, pk):
+    pass
+
+def deleteNotification(request, pk):
+    pass
