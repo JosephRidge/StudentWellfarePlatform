@@ -69,7 +69,6 @@ class Feedback(models.Model):
     comments = models.TextField()
     create_at = models.DateTimeField(auto_now = True) 
     updated_at = models.DateTimeField(auto_now_add = True)
-
  
 class Resource(models.Model):
     CATEGORY_CHOICES = [
@@ -90,6 +89,9 @@ class Resource(models.Model):
     file = models.FileField(upload_to="resource_file", blank=True, null=True)
     create_at = models.DateTimeField(auto_now = True) 
     updated_at = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.title} || {self.category}"
 
 class Notification(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
