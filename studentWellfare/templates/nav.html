@@ -24,6 +24,10 @@
         </li>
 
         <li class="nav-item">
+          <a class="nav-link btn " href="{% url 'read-resources' %}"> Resources </a>
+        </li>
+
+        <li class="nav-item">
           {% if user.is_authenticated %}
           <a class="nav-link btn " href="{% url 'user-profile' %}"> 
             {% if user.profile_picture %}

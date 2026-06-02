@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import ReportForm, AppointmentForm, FeedbackForm, ResourceForm, NotificationForm
 from django.contrib import messages # aids in notification/ pop ups 
+from .models import Resource, Report, Notification, Appointment, Feedback # models
 
 # Create your views here.
 @login_required(login_url='login')
@@ -35,7 +36,16 @@ def createFeedback(request):
     context = {"form": form, "type": "How was your appointment? "}
     return render(request, 'main/forms.html', context)
 
-
+"""
+- RESOURCE CRUD Operations
+    - CREATE
+    - READ
+        - Read One item
+        - Read All items
+    - UPDATE
+    - DELETE
+"""
+# create data/ information
 @login_required(login_url='login')
 def createResource(request):
     if request.method == "POST": 
@@ -45,7 +55,7 @@ def createResource(request):
             user = form.save(commit = False) # pause submission
             user.save() # create the new user
             messages.info(request, "Success!")
-            return redirect('login')
+            return redirect('read-resources')
         else:
             # form = UserForm() # create an instance of the userform
             messages.info(request, f"Failed! {form.errors}")
@@ -55,6 +65,22 @@ def createResource(request):
     context = {"form": form, "type": "Add a new resource"}
     return render(request, 'main/forms.html', context)
 
+#    path('read-resources/',views.readResources, name='read-resources'),
+def readResources(request):
+    resources = Resource.objects.all() # fetches all the resources from the DB
+    context = { "resources":resources}
+    return render(request, "main/resources.html", context)
+
+
+#     path('read-resources/',views.readResources, name='read-resources'),
+def readResource(request):
+    pass
+#     path('update-resource/',views.updateResources, name='update-resources'),
+def updateResources(request):
+    pass
+#     path('delete-resource/',views.deleteResources, name='delete-resources'),
+def deleteResources(request):
+    pass
 
 
 @login_required(login_url='login')

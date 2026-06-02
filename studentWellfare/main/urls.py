@@ -17,8 +17,12 @@ urlpatterns = [
     path('create-feedback/',views.createFeedback, name='create-feedback'),
 
 
-# RESEOUCE CRUD    
+# RESEOURCE CRUD    
     path('create-resource/',views.createResource, name='create-resource'),
+    path('read-resource/',views.readResource, name='read-resource'),
+    path('read-resources/',views.readResources, name='read-resources'),
+    path('update-resource/',views.updateResources, name='update-resources'),
+    path('delete-resource/',views.deleteResources, name='delete-resources'),
 
 
 # NOTIFICAITON CRUD 

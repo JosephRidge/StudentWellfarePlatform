@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for resource in resources %}
+   <div>{{resource.title}}</div>
+
+{% endfor %}
+
+{% endblock %}
