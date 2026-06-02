@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div><span class="display-6 fw-bold">{{resource.title}}</span> <span
+        class="badge bg-secondary">{{resource.category}}</span> </div>
+
+<div class="fs-6">{{resource.notes}}</div>
+<div class="dflex">
+    {% if resource.image %}
+    <img src="{{resource.image.url}}" width="200" height="300" alt="" srcset="">
+    {% endif %}
+    {% if resource.image_two %}
+    <img src="{{resource.image_two.url}}" width="200" height="300" alt="" srcset="">
+    {% endif %}
+</div>
+
+{% if resource.file %}
+<a href="{{resource.file.url}}" download="">Download to learn more</a>
+{% endif %}
+
+{% if resource.link %}
+<a href="{{resource.link}}"> source</a>
+{% endif %}
+
+{% endblock %}

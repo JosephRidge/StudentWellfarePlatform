@@ -73,11 +73,18 @@ def readResources(request):
 
 
 #     path('read-resources/',views.readResources, name='read-resources'),
-def readResource(request):
-    pass
+def readResource(request, pk):
+    resource = Resource.objects.get(id=pk) # fetche a particular resource from the DB
+    context = { "resource":resource}
+    return render(request, "main/resource.html", context)
+
 #     path('update-resource/',views.updateResources, name='update-resources'),
-def updateResources(request):
-    pass
+def updateResources(request, pk):
+    resource = Resource.objects.get(id=pk) # fetche a particular resource from the DB
+    form = ResourceForm(instance = resource)
+    context = {"form":form}
+    return render(request, "main/forms.html", context)
+
 #     path('delete-resource/',views.deleteResources, name='delete-resources'),
 def deleteResources(request):
     pass

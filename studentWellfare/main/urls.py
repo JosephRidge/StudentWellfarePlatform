@@ -19,9 +19,9 @@ urlpatterns = [
 
 # RESEOURCE CRUD    
     path('create-resource/',views.createResource, name='create-resource'),
-    path('read-resource/',views.readResource, name='read-resource'),
+    path('read-resource/<int:pk>',views.readResource, name='read-resource'),
     path('read-resources/',views.readResources, name='read-resources'),
-    path('update-resource/',views.updateResources, name='update-resources'),
+    path('update-resource/<int:pk>',views.updateResources, name='update-resources'),
     path('delete-resource/',views.deleteResources, name='delete-resources'),
 
 
