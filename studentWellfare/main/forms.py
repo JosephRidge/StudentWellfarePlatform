@@ -29,5 +29,5 @@ class ResourceForm(ModelForm):
 class NotificationForm(ModelForm):
     class Meta: 
         model = Notification
-        fields = '__all__'
+        fields = ['message']
 

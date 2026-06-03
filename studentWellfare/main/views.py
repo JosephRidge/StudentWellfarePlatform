@@ -124,10 +124,12 @@ def createNotification(request):
     form = NotificationForm() # instance of the form 
 
     if request.method == 'POST':
-        form = NotificationForm(request.POST ) 
-        # tODO: capture user details as defaullt
+        form = NotificationForm(request.POST)
+         
         if form.is_valid(): 
-            form.save()
+            notification =  form.save(commit = False) # pauses the submission of the form
+            notification.user = request.user 
+            notification.save()
             redirect('read-notifications')
         else:
             messages.error(request, f"{form.errors}")
