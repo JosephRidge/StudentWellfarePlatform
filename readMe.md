@@ -92,3 +92,7 @@ TODO: Add each step of implementation
                 fields = UserCreationForm.Meta.Fields + ("first_name", "last_name","email", "roles","profile_picture","bio")
 
         ```
+
+
+# Database Structure:
+![alt text](image.png)
