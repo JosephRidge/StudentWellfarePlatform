@@ -28,4 +28,7 @@ urlpatterns = [
 # NOTIFICAITON CRUD 
     path('create-notification/',views.createNotification, name='create-notification'),
 
+# Payments Platform:
+
+    path('make-donations/', views.makeDonation, name='make-donations'),
 ]
