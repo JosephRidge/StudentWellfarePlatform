@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <h4>MPesa Donations: </h4>
+    <label for="phonenumber">Enter Phone Number</label>
+    <input type="telephone" name="phonenumber" placeholder="enter phone numbe eg 071234567 or 011224488 etc">
+    <br>
+    <label for="amount">Enter Donation amount(ksh)</label>
+    <input type="number" name="amount" placeholder="eg 100">
+<br>
+    <input type="submit" value="make donation">
+    <p class="fs-6 my-2 text-secondary">Kindly check your phone for a prompt payment</p>
+
+</form>
+{% endblock %}
+
+{{response}}
+
+<!-- { "MerchantRequestID":"af47-4ac4-bf65-22a9605b210c93547", "CheckoutRequestID":"ws_CO_03062026131147825716390309", "ResponseCode": "0", "ResponseDescription":"Success. Request accepted for processing", "CustomerMessage":"Success. Request accepted for processing" } -->

@@ -5,4 +5,6 @@
 {% if user.profile_picture %}
 <img src="{{ user.profile_picture.url}}" width="100" height="100" alt="">
 {% endif %}
+
+<a href="{% url 'make-donations' %}" class="btn btn-success"> DONATE 1/=</a>
 {% endblock %}
