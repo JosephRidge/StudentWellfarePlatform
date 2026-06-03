@@ -168,3 +168,7 @@ TODO: Add each step of implementation
 
 - run `python manage.py makemigrations` & `python manage.py migrate`:
 ![alt text](image-6.png)
+
+
+NOTE: 
+- [You can use this to attain boostrap templates ](https://themefisher.com/products/constra-bootstrap)
